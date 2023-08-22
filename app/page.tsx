@@ -8,6 +8,7 @@ import { gql } from "@apollo/client";
 
 import { Country } from '@/types';
 import Header from "@/components/header";
+import Cart from "@/components/cart";
 
 type SuspenseQueryResult<T> = {
   data: T;
@@ -50,12 +51,8 @@ export default function Page() {
     <>
       <Header setSearchKey={setSearchKey} />
       <div className="flex items-center mt-2">
-        <div className="p-10">
-          <ul>
-            {countries.map((country: Country) => (
-              <li key={country.code}>{country.name}</li>
-            ))}
-          </ul>
+        <div className="p-10 w-full">
+          <Cart countries={countries} />
         </div>
       </div>
     </>
