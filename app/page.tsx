@@ -1,8 +1,15 @@
 
-import { getClient } from "@/lib/client";
+"use client";
+
+import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import { gql } from "@apollo/client";
 
+import { Country } from '@/types';
 import Header from "@/components/header";
+
+type SuspenseQueryResult<T> = {
+  data: T;
+};
 
 const query = gql`
   query Now {
@@ -16,10 +23,11 @@ const query = gql`
   }
 `;
 
-export default async function Page() {
-  const { data } = await getClient().query({ query });
+export default function Page() {
+  const { data } = useSuspenseQuery(query) as SuspenseQueryResult<{ countries: Country[] }>;
 
-  const variables = data.countries;
+  const variables: Country[] = data.countries;
+
 
   return (
     <>
@@ -27,7 +35,7 @@ export default async function Page() {
       <div className="flex items-center mt-2">
         <div>
           <ul>
-            {variables.map((item) => (
+            {variables.map((item:any) => (
               <>
                 <li>{item.name}</li>
               </>
