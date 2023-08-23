@@ -18,9 +18,7 @@ const query = gql`
   query GetCountries($filter: CountryFilterInput) {
     countries(filter: $filter) {
       capital
-      code
-      emoji
-      emojiU
+      code      
       name
     }
   }
@@ -28,13 +26,12 @@ const query = gql`
 
 export default function Page() {
   const [searchKey, setSearchKey] = useState("");
-
   let variables: { filter?: { code?: { eq: string } } } = {};
 
   if (searchKey !== "") {
     variables = {
       filter: {
-        code: { eq: searchKey }
+        code: { eq: searchKey.toUpperCase() }
       }
     };
   }
@@ -45,6 +42,7 @@ export default function Page() {
 
   const countries: Country[] = data.countries;
 
+  
   
 
   return (

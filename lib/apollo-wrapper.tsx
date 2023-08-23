@@ -13,8 +13,7 @@ import {
 } from "@apollo/experimental-nextjs-app-support/ssr";
 
 function makeClient() {
-  const httpLink = new HttpLink({
-      // https://studio.apollographql.com/public/spacex-l4uc6p/
+  const httpLink = new HttpLink({      
       uri: "https://countries.trevorblades.com/graphql",
   });
 

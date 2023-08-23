@@ -1,11 +1,11 @@
 "use client"
 
-import { Button, TextField } from "@mui/material";
 import React, { useState, useEffect } from 'react';
 
+import { Button, TextField } from "@mui/material";
 
 interface HeaderProps {
-  setSearchKey: React.Dispatch<React.SetStateAction<string>>;
+  setSearchKey: React.Dispatch<React.SetStateAction<string>>;  
 }
 
 const Header: React.FC<HeaderProps> = ({ setSearchKey }) => {
@@ -13,9 +13,12 @@ const Header: React.FC<HeaderProps> = ({ setSearchKey }) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
-    setSearchKey(e.target.value);
+    // setSearchKey(e.target.value);
   };
 
+  const applyFilter =() => {
+    setSearchKey(inputValue);
+  }
 
   const removeFilter = () =>{
     setInputValue("");
@@ -32,15 +35,21 @@ const Header: React.FC<HeaderProps> = ({ setSearchKey }) => {
       <div>
         <h3 className="text-3xl mb-3">GraphQL Integration</h3>
       </div>
-      <div className="flex items-center">
-        <TextField
-          label="Search"
-          id="search"
-          className="w-[500px]"
-          value={inputValue}
-          onChange={handleInputChange}
-        />        
-        <Button onClick={removeFilter}>Remove Filter</Button>
+      <div className="flex justify-between">
+        <div className="ml-3 mr-3">
+          <TextField            
+            label="Search"
+            id="search"
+            className="w-[500px]"
+            size="small"
+            value={inputValue}
+            onChange={handleInputChange}
+          />     
+        </div>
+        <div className="flex gap-2">
+          <Button variant="outlined" color="success" onClick={applyFilter}>Search</Button>
+          <Button variant="outlined" onClick={removeFilter}>Remove Filter</Button>
+        </div>        
       </div>
     </div>
   );

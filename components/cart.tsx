@@ -1,7 +1,10 @@
-import React from 'react'
+"use client"
+
+import React, {useState,useEffect} from 'react'
 import ReactCountryFlag from "react-country-flag"
 
 import { Country } from "@/types"
+import { cn } from "@/lib/utils"
 
 interface CartProps{
     countries: Country[],
@@ -11,12 +14,27 @@ const Cart:React.FC<CartProps> = ({
     countries
 }) => {
 
-    const smiley = "1"
+    const [selectedCountry, setSelectedCountry]= useState("");
+
+    const selectCountry = (e:any) =>{
+      setSelectedCountry(e);
+    }
+    
+    useEffect(()=>{
+      console.log(selectedCountry,"select");
+    },[selectedCountry])
+
+  
+    
+
   return (
     <>
       <div className="grid grid-cols-8 gap-2">
-            {countries.map((country: Country) => (
-              <div key={country.code} className="border border-black rounded p-10 col-span-1 text-center">
+            {countries.length>=1 ? countries.map((country: Country) => (
+              <div 
+                key={country.code} 
+                className={cn("border-2 cursor-pointer border-black rounded p-10 col-span-1 text-center", selectedCountry==country.name ? "bg-green-400" : "bg-white")} 
+                onClick={()=>selectCountry(country.name)}>
                 <ReactCountryFlag
                   countryCode={country.code}
                   svg
@@ -31,7 +49,11 @@ const Cart:React.FC<CartProps> = ({
                 <p className="text-sm">
                 {country.capital}</p>
                 </div>
-            ))}        
+            )):(
+              <div className="col-span-8 text-center">
+                <p>There is no match.</p>
+              </div>
+            )}        
       </div>
     </>
   )
