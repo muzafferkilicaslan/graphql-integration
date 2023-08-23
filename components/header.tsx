@@ -22,13 +22,8 @@ const Header: React.FC<HeaderProps> = ({ setSearchKey }) => {
 
   const removeFilter = () =>{
     setInputValue("");
+    setSearchKey("");
   }
-
-  useEffect(() => {
-    if (!inputValue) {
-      setSearchKey("");
-    }
-  }, [inputValue]);
 
   return (
     <div className="top-0 bg-[#fff] sticky z-10 p-8 flex flex-col justify-center items-center border-b border-[#333] ">
