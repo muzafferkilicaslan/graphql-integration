@@ -29,11 +29,11 @@ const Cart:React.FC<CartProps> = ({
 
   return (
     <>
-      <div className="grid grid-cols-8 gap-2">
+      <div className="grid grid-cols-12 gap-2">
             {countries.length>=1 ? countries.map((country: Country) => (
               <div 
                 key={country.code} 
-                className={cn("border-2 cursor-pointer border-black rounded p-10 col-span-1 text-center", selectedCountry==country.name ? "bg-green-400" : "bg-white")} 
+                className={cn("border-2 cursor-pointer border-black rounded p-10 col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2 xl:col-span-2 text-center", selectedCountry==country.name ? "bg-green-400" : "bg-white")} 
                 onClick={()=>selectCountry(country.name)}>
                 <ReactCountryFlag
                   countryCode={country.code}

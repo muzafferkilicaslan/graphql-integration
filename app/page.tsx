@@ -48,7 +48,7 @@ export default function Page() {
   return (
     <>
       <Header setSearchKey={setSearchKey} />
-      <div className="flex items-center mt-2">
+      <div className="flex w-full items-center bg-[#f5f5f5]">
         <div className="p-10 w-full">
           <Cart countries={countries} />
         </div>

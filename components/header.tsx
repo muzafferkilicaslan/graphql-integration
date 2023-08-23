@@ -31,22 +31,21 @@ const Header: React.FC<HeaderProps> = ({ setSearchKey }) => {
   }, [inputValue]);
 
   return (
-    <div className="p-10 flex flex-col justify-center items-center border-b border-[#333] ">
+    <div className="top-0 bg-[#fff] sticky z-10 p-8 flex flex-col justify-center items-center border-b border-[#333] ">
       <div>
-        <h3 className="text-3xl mb-3">GraphQL Integration</h3>
+        <h3 className="text-3xl mb-3 text-center">GraphQL Integration</h3>
       </div>
-      <div className="flex justify-between">
-        <div className="ml-3 mr-3">
+      <div className="flex flex-wrap justify-center items-center w-full">
+        <div className="ml-3 mr-3 mb-2 sm:mb-0">
           <TextField            
             label="Search"
-            id="search"
-            className="w-[500px]"
+            id="search"            
             size="small"
             value={inputValue}
             onChange={handleInputChange}
           />     
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 mb-2 sm:mb-0">
           <Button variant="outlined" color="success" onClick={applyFilter}>Search</Button>
           <Button variant="outlined" onClick={removeFilter}>Remove Filter</Button>
         </div>        
