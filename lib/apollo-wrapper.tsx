@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  ApolloClient,
-  ApolloLink,
-  HttpLink,
-} from "@apollo/client";
+import { ApolloClient, ApolloLink, HttpLink } from "@apollo/client";
 import {
   NextSSRApolloClient,
   ApolloNextAppProvider,
@@ -13,8 +9,8 @@ import {
 } from "@apollo/experimental-nextjs-app-support/ssr";
 
 function makeClient() {
-  const httpLink = new HttpLink({      
-      uri: "https://countries.trevorblades.com/graphql",
+  const httpLink = new HttpLink({
+    uri: "https://countries.trevorblades.com/graphql",
   });
 
   return new NextSSRApolloClient({
