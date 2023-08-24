@@ -9,11 +9,12 @@ import { Button} from "@mui/material";
 
 interface CartProps {
   countries: Country[];
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Cart: React.FC<CartProps> = ({ countries }) => {
-  const [selectedCountry, setSelectedCountry] = useState("");
-  const [page, setPage] = useState(1);
+const Cart: React.FC<CartProps> = ({ countries,page,setPage }) => {
+  const [selectedCountry, setSelectedCountry] = useState("");  
   const [pageStart, setPageStart] = useState(0);
   const [pageEnd, setPageEnd] = useState(10);
   
@@ -51,12 +52,15 @@ const Cart: React.FC<CartProps> = ({ countries }) => {
     if(data.length>=1){
       selectLast();
     }
-  },[pageEnd])
+  },[pageEnd,data])
 
   const nextPage = () =>{
-    setPageStart(pageStart+10);
-    setPage(page+1);
-    setPageEnd(pageEnd+10);    
+    if(page<data.length/10){
+      console.log(data.length/10,"data")
+      setPageStart(pageStart+10);
+      setPage(page+1);
+      setPageEnd(pageEnd+10);    
+    }    
   }
 
   const selectLast = () =>{
@@ -70,7 +74,7 @@ const Cart: React.FC<CartProps> = ({ countries }) => {
 
   return (
     <>      
-      <div className="grid grid-cols-10 gap-2">
+      <div className="grid grid-cols-10 gap-2">        
         {data.length > 10 ? (
           data.slice(pageStart, pageEnd).map((country: Country) => (
             <div
@@ -128,9 +132,9 @@ const Cart: React.FC<CartProps> = ({ countries }) => {
         )}
       </div>
       <div className="w-full flex justify-center mt-5 items-center">
-          <Button variant="outlined" className={cn(page==1 ? "disabled" : '')} onClick={previousPage}>-</Button>
+          <Button variant="outlined" disabled={page==1} onClick={previousPage}>-</Button>
           <p className="p-5">{page}</p>
-          <Button variant="outlined" onClick={nextPage}>+</Button>
+          <Button disabled={page>=data.length/10} variant="outlined" onClick={nextPage}>+</Button>
       </div>
     </>
   );

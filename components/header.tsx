@@ -5,10 +5,11 @@ import React, { useState, useEffect } from 'react';
 import { Button, TextField } from "@mui/material";
 
 interface HeaderProps {
-  setSearchKey: React.Dispatch<React.SetStateAction<string>>;  
+  setSearchKey: React.Dispatch<React.SetStateAction<string>>;
+  setPage: React.Dispatch<React.SetStateAction<number>>;  
 }
 
-const Header: React.FC<HeaderProps> = ({ setSearchKey }) => {
+const Header: React.FC<HeaderProps> = ({ setSearchKey,setPage }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,6 +19,7 @@ const Header: React.FC<HeaderProps> = ({ setSearchKey }) => {
 
   const applyFilter =() => {
     setSearchKey(inputValue);
+    setPage(1);
   }
 
   const removeFilter = () =>{

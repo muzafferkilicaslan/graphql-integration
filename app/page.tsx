@@ -27,6 +27,7 @@ const query = gql`
 export default function Page() {
   const [searchKey, setSearchKey] = useState("");
   let variables: { filter?: { code?: { eq: string } } } = {};
+  const [page,setPage] = useState(1);
 
   if (searchKey !== "") {
     variables = {
@@ -47,10 +48,10 @@ export default function Page() {
 
   return (
     <>
-      <Header setSearchKey={setSearchKey} />
+      <Header setSearchKey={setSearchKey} setPage={setPage} />
       <div className="flex w-full bg-[#f5f5f5] h-[calc(100vh-153px)]">
         <div className="p-10 w-full">
-          <Cart countries={countries} />          
+          <Cart countries={countries} page={page} setPage={setPage} />          
         </div>
       </div>
     </>
