@@ -22,7 +22,7 @@ const Cart: React.FC<CartProps> = ({
 }) => {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [pageStart, setPageStart] = useState(0);
-  const [pageEnd, setPageEnd] = useState(10);
+  const [pageEnd, setPageEnd] = useState(12);
 
   const selectCountry = (e: any) => {
     if (selectedCountry == e) {
@@ -41,15 +41,11 @@ const Cart: React.FC<CartProps> = ({
     selectLast();
   }, [countries]);
 
-  useEffect(() => {
-    console.log(selectedCountry, "select");
-  }, [selectedCountry]);
-
   const previousPage = () => {
     if (page != 1) {
-      setPageStart(pageStart - 10);
+      setPageStart(pageStart - 12);
       setPage(page - 1);
-      setPageEnd(pageEnd - 10);
+      setPageEnd(pageEnd - 12);
     }
   };
 
@@ -60,19 +56,20 @@ const Cart: React.FC<CartProps> = ({
   }, [pageEnd, data]);
 
   const nextPage = () => {
-    if (page < data.length / 10) {
-      console.log(data.length / 10, "data");
-      setPageStart(pageStart + 10);
+    if (page < data.length / 12) {
+      setPageStart(pageStart + 12);
       setPage(page + 1);
-      setPageEnd(pageEnd + 10);
+      setPageEnd(pageEnd + 12);
     }
   };
 
   const selectLast = () => {
-    if (data.length >= 10) {
-      setSelectedCountry(data[pageEnd - 1].name);
-    } else if (data.length >= 1) {
-      setSelectedCountry(data[data.length - 1].name);
+    if (data.length >= 1) {
+      if (pageEnd >= data.length) {
+        setSelectedCountry(data[data.length - 1].name);
+      } else {
+        setSelectedCountry(data[pageEnd - 3].name);
+      }
     }
   };
 
@@ -106,7 +103,9 @@ const Cart: React.FC<CartProps> = ({
                   title={country.code}
                 />
                 <br />
-                <h3 className="mb-5 h-[50px] flex align-middle justify-center items-center">{country.name}</h3>
+                <h3 className="mb-5 h-[50px] flex align-middle justify-center items-center">
+                  {country.name}
+                </h3>
                 <p className="text-sm">{country.capital}</p>
               </div>
             );
@@ -153,7 +152,7 @@ const Cart: React.FC<CartProps> = ({
         </Button>
         <p className="p-5">{page}</p>
         <Button
-          disabled={page >= data.length / 10}
+          disabled={page >= data.length / 12}
           variant="outlined"
           onClick={nextPage}
         >

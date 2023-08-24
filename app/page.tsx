@@ -66,7 +66,7 @@ export default function Page() {
         backgroundColor={backgroundColor}
         setBackgroundColor={setBackgroundColor}
       />
-      <div className="flex w-full bg-[#f5f5f5] h-[calc(100vh-153px)]">
+      <div className="flex w-full bg-[#f5f5f5] h-[calc(100vh-193px)]">
         <div className="p-10 w-full">
           <Cart
             countries={countries}

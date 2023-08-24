@@ -36,18 +36,18 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <div className="top-0 bg-[#fff] sticky z-10 p-8 flex flex-col justify-center items-center border-b border-[#333] ">
-      <div className="flex flex-start w-full">
+    <div className="top-0 bg-[#fff] sticky z-10 pt-2 pb-4 flex flex-col justify-center items-center border-b border-[#333] ">
+      <div className="flex justify-center lg:justify-start w-full">
         <ColorPalette
           setBackgroundColor={setBackgroundColor}
           backgroundColor={backgroundColor}
         />
       </div>
-      <div>
+      <div className="mt-2">
         <h3 className="text-3xl mb-3 text-center">GraphQL Integration</h3>
       </div>
-      <div className="flex flex-wrap justify-center items-center w-full">
-        <div className="ml-3 mr-3 mb-2 sm:mb-0">
+      <div className="flex flex-wrap justify-center items-center w-full gap-2">
+        <div className="mb-2 sm:mb-0">
           <TextField
             label="Search"
             id="search"
@@ -56,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({
             onChange={handleInputChange}
           />
         </div>
-        <div className="flex gap-2 mb-2 sm:mb-0">
+        <div className="flex flex-wrap justify-center gap-2 mb-2 sm:mb-0">
           <Button variant="outlined" color="success" onClick={applyFilter}>
             Search
           </Button>

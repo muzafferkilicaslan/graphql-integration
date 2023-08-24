@@ -16,12 +16,8 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({
     setBackgroundColor(e);
   };
 
-  useEffect(() => {
-    console.log(backgroundColor, "background");
-  }, [backgroundColor]);
-
   return (
-    <div className="pt-2 pb-2">
+    <div className="p-2">
       <p className="text-center text-sm">Pick a color</p>
       <div className="flex flex-wrap gap-1">
         <div
