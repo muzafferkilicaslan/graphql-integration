@@ -50,6 +50,7 @@ const Header: React.FC<HeaderProps> = ({
         <div className="mb-2 sm:mb-0">
           <TextField
             label="Search"
+            placeholder="Enter Country Code"
             id="search"
             size="small"
             value={inputValue}
